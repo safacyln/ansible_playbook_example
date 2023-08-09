@@ -1,0 +1,30 @@
+---
+- name: Update
+  hosts: linux  # will only work in this group
+  become: true  # Privilege escalation için gerekli (sudo gibi)
+
+  tasks:
+    - name: packege update 
+      apt:
+        update_cache: yes
+
+    - name: update distribution
+      apt:
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
+
+    - name: System reboot
+      reboot:
+        reboot_timeout: 300
+        pre_reboot_delay: 30
+    
+    - name: Send notify to Telegram
+      community.general.telegram:
+        token: '{token}'
+        api_args:
+          chat_id: {chat_id}
+          parse_mode: "markdown"
+          text: "Ansible playbook tamamlandı. Sunucular güncellendi ve yeniden başlatıldı."
+          disable_web_page_preview: true
+          disable_notification: true
