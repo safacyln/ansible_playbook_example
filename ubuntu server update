@@ -1,4 +1,7 @@
 ---
+
+# Bu playbook ubuntu sunucunuzu günceller ve belirmiş olduğunuz telegram adresine mesaj atar
+
 - name: Update
   hosts: linux  # will only work in this group
   become: true  # Privilege escalation için gerekli (sudo gibi)
