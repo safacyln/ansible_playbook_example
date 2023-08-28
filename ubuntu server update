@@ -1,6 +1,7 @@
 ---
 
 # Bu playbook ubuntu sunucunuzu günceller ve belirmiş olduğunuz telegram adresine mesaj atar
+# öncelikle ansible çalışacak sunucuda bunu yüklemen gerekiyor ansible-galaxy collection install community.general
 
 - name: Update
   hosts: linux  # will only work in this group
